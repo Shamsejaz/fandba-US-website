@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fandba-website
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_GA_ID=G-7F1JW29SW7
+      # Add other environment variables as needed
+    restart: unless-stopped
+    volumes:
+      # Optional: Mount logs directory
+      - ./logs:/app/.next/cache
+
+  # Optional: Add a reverse proxy like nginx for production
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #     - ./ssl:/etc/nginx/ssl
+  #   depends_on:
+  #     - app
+  #   restart: unless-stopped
+
+  # Optional: Add a caching layer like Redis
+  # redis:
+  #   image: redis:alpine
+  #   container_name: fandba-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   restart: unless-stopped
+
+volumes:
+  # redis_data: {}
