@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import { z } from 'zod';
+import nodemailer from 'nodemailer';
 
 // Define validation schema
 const contactFormSchema = z.object({
@@ -11,6 +12,19 @@ const contactFormSchema = z.object({
   message: z.string().min(10, 'Message must be at least 10 characters').max(1000, 'Message must be less than 1000 characters'),
 });
 
+// Create a reusable transporter for email sending
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port: parseInt(process.env.SMTP_PORT || "587"),
+    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    },
+  });
+};
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -18,13 +32,44 @@ export async function POST(request: NextRequest) {
     // Validate and sanitize input
     const validatedData = contactFormSchema.parse(body);
 
-    // TODO: Implement actual email sending or database storage
-    // For now we're just validating and sanitizing the data
+    // Create email content
+    const emailContent = `
+      Name: ${validatedData.name}
+      Email: ${validatedData.email}
+      Company: ${validatedData.company || 'N/A'}
+      Phone: ${validatedData.phone || 'N/A'}
+      Service of Interest: ${validatedData.service || 'N/A'}
+      Message: ${validatedData.message}
+    `;
+
+    // Send email if SMTP configuration is available
+    if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+      const transporter = createTransporter();
+      
+      const mailOptions = {
+        from: process.env.SMTP_USER,
+        to: process.env.CONTACT_EMAIL || 'info@fandba.us', // Default to company email
+        subject: `New Contact Form Submission from ${validatedData.name}`,
+        text: emailContent,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${validatedData.name}</p>
+          <p><strong>Email:</strong> ${validatedData.email}</p>
+          <p><strong>Company:</strong> ${validatedData.company || 'N/A'}</p>
+          <p><strong>Phone:</strong> ${validatedData.phone || 'N/A'}</p>
+          <p><strong>Service of Interest:</strong> ${validatedData.service || 'N/A'}</p>
+          <p><strong>Message:</strong><br>${validatedData.message.replace(/\n/g, '<br>')}</p>
+        `,
+      };
+
+      await transporter.sendMail(mailOptions);
+    } else {
+      // If no SMTP configuration, log the data (for testing)
+      console.log('Email not sent - SMTP not configured. Form data:', validatedData);
+    }
+
     console.log('Validated contact form data:', validatedData);
 
-    // In a real implementation, you would send an email or save to database here
-    // Use a service like SendGrid, AWS SES, or similar for email
-    
     return new Response(JSON.stringify({ message: 'Form submitted successfully' }), {
       status: 200,
       headers: {
@@ -33,6 +78,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     if (error instanceof z.ZodError) {
+      console.error('Validation error:', error.errors);
       return new Response(
         JSON.stringify({ 
           message: 'Validation error', 
