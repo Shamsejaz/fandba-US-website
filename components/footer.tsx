@@ -9,8 +9,13 @@ export function Footer() {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <Shield className="h-8 w-8 text-blue-400" />
-              <span className="text-2xl font-bold">FANDBA</span>
+              <img 
+                src="/logo.png" 
+                alt="FANDBA Logo" 
+                width={120} 
+                height={40}
+                className="h-auto object-contain"
+              />
             </div>
             <p className="text-gray-300 mb-4">
               Empowering businesses through innovative IT solutions, robust cybersecurity, 

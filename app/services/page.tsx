@@ -1,10 +1,33 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Shield, Cloud, Settings, HeadphonesIcon, Database, Network, Bot, Lock, HeartPulse } from 'lucide-react';
+import StructuredData from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'IT Services - FANDBA | Managed IT, Cloud, Security & AI Solutions',
   description: 'Comprehensive IT services including managed security, cloud services, AI automation, cybersecurity, and 24/7 IT support. Enterprise solutions for modern businesses.',
+  openGraph: {
+    title: 'IT Services - FANDBA | Managed IT, Cloud, Security & AI Solutions',
+    description: 'Comprehensive IT services including managed security, cloud services, AI automation, cybersecurity, and 24/7 IT support. Enterprise solutions for modern businesses.',
+    url: 'https://fandba.us/services',
+    type: 'website',
+    images: [
+      {
+        url: '/og-services.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FANDBA IT Services - Managed IT, Cloud, Security & AI',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IT Services - FANDBA | Managed IT, Cloud, Security & AI Solutions',
+    description: 'Comprehensive IT services including managed security, cloud services, AI automation, cybersecurity, and 24/7 IT support.',
+  },
+  alternates: {
+    canonical: 'https://fandba.us/services',
+  },
 };
 
 const services = [
@@ -81,83 +104,121 @@ const services = [
 ];
 
 export default function Services() {
+  // Service Structured Data for primary services
+  const servicesSchema = services.map(service => ({
+    '@type': 'Service' as const,
+    serviceType: service.title,
+    provider: {
+      '@type': 'Organization' as const,
+      name: 'FANDBA',
+      url: 'https://fandba.us',
+      logo: '/logo.png'
+    },
+    areaServed: 'US',
+    serviceOutput: {
+      '@type': 'Thing' as const,
+      name: service.title
+    },
+    description: service.description
+  }));
+
+  const servicePageSchema = {
+    '@type': 'ItemList' as const,
+    itemListElement: services.map((service, index) => ({
+      '@type': 'ListItem' as const,
+      position: index + 1,
+      item: {
+        '@type': 'Service' as const,
+        name: service.title,
+        description: service.description,
+        provider: {
+          '@type': 'Organization' as const,
+          name: 'FANDBA'
+        }
+      }
+    }))
+  };
+
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 to-slate-100 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-              Our <span className="text-blue-600">Services</span>
-            </h1>
-            <p className="mt-6 max-w-3xl mx-auto text-xl text-gray-600">
-              Comprehensive IT solutions designed to accelerate your business growth, 
-              enhance security, and drive digital transformation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <Link 
-                  key={index} 
-                  href={service.href}
-                  className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-                >
-                  <div className="p-6">
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="h-6 w-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {service.description}
-                    </p>
-                    <div className="mt-4 text-blue-600 font-medium group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center">
-                      Learn More →
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Let's discuss how our services can help you achieve your goals.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/contact"
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-              >
-                Get Free Consultation
-              </Link>
-              <Link 
-                href="/contact"
-                className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
-              >
-                Request Quote
-              </Link>
+    <>
+      <StructuredData type="Service" data={servicesSchema[0]} />
+      <div className="pt-20">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-50 to-slate-100 py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
+                Our <span className="text-blue-600">Services</span>
+              </h1>
+              <p className="mt-6 max-w-3xl mx-auto text-xl text-gray-600">
+                Comprehensive IT solutions designed to accelerate your business growth, 
+                enhance security, and drive digital transformation.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Services Grid */}
+        <section className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => {
+                const IconComponent = service.icon;
+                return (
+                  <Link 
+                    key={index} 
+                    href={service.href}
+                    className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  >
+                    <div className="p-6">
+                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComponent className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {service.description}
+                      </p>
+                      <div className="mt-4 text-blue-600 font-medium group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center">
+                        Learn More →
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-white mb-4">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-xl text-blue-100 mb-8">
+                Let's discuss how our services can help you achieve your goals.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link 
+                  href="/contact"
+                  className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                >
+                  Get Free Consultation
+                </Link>
+                <Link 
+                  href="/contact"
+                  className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+                >
+                  Request Quote
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

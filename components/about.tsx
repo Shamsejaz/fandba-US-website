@@ -22,20 +22,29 @@ export function About() {
               your unique needs.
             </p>
             
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Our Mission</h4>
-                <p className="text-sm text-gray-600">
-                  To empower organizations with reliable, secure, and innovative 
-                  technology solutions.
-                </p>
-              </div>
-              <div>
-                <h4 className="font-semibold text-gray-900 mb-2">Our Vision</h4>
-                <p className="text-sm text-gray-600">
-                  To be the most trusted technology partner in the region, 
-                  known for excellence and innovation.
-                </p>
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Our Mission & Vision</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
+                    <Building2 className="h-5 w-5 mr-2" />
+                    Our Mission
+                  </h4>
+                  <p className="text-gray-700">
+                    To empower organizations with reliable, secure, and innovative 
+                    technology solutions.
+                  </p>
+                </div>
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2 flex items-center">
+                    <Globe className="h-5 w-5 mr-2" />
+                    Our Vision
+                  </h4>
+                  <p className="text-gray-700">
+                    To be the most trusted technology partner in the region, 
+                    known for excellence and innovation.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

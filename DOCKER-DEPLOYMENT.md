@@ -1,7 +1,7 @@
-# Docker Deployment Guide for FANDBA Website
+# Docker Deployment Guide for FANDBA Website with SEO Optimizations
 
 ## Overview
-This guide provides detailed instructions for deploying the FANDBA website using Docker and Docker Compose.
+This guide provides detailed instructions for deploying the FANDBA website using Docker and Docker Compose. The website includes comprehensive SEO optimizations including structured data, canonical URLs, enhanced metadata, and optimized content structure for improved Google Search Console performance.
 
 ## Prerequisites
 
@@ -103,6 +103,31 @@ volumes:
 ```
 
 For production, you might want to add more persistent volumes for logs, file uploads, etc.
+
+## SEO Features in Docker Deployment
+
+All SEO optimizations are automatically included in the Docker build:
+
+- **Structured Data**: JSON-LD schemas for Organization, LocalBusiness, and Service types
+- **Canonical URLs**: Proper canonical URL implementation across all pages
+- **OpenGraph & Twitter Cards**: Enhanced metadata for rich previews
+- **Heading Hierarchy**: Optimized content structure for better indexing
+- **Sitemap**: Automatically generated sitemap.xml
+- **Robots.txt**: Properly configured for search engine crawlers
+
+These features are built into the application during the Docker build process and are immediately available when the container starts.
+
+### Verifying SEO Features in Deployment
+
+To verify that SEO features are working in your Docker deployment:
+
+1. Check the site is running: `docker-compose ps`
+2. Access the homepage and view source to confirm structured data is present
+3. Check the sitemap at `/sitemap.xml`
+4. Verify robots.txt at `/robots.txt`
+5. Use Google Search Console to verify structured data and sitemap
+
+## Production Deployment Considerations
 
 ## Scaling the Application
 

@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
-import Script from 'next/script';
+import StructuredData from '@/components/StructuredData';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,22 +28,24 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://fandba.us',
     title: 'FANDBA - Enterprise IT Solutions & Cybersecurity Services',
-    description: 'Leading provider of managed IT services, cybersecurity solutions, AI automation, and cloud services.',
+    description: 'Leading provider of managed IT services, cybersecurity solutions, AI automation, and cloud services. Trusted by businesses across the globe for digital transformation.',
     siteName: 'FANDBA',
     images: [
       {
-        url: 'https://fandba.us/og-default.jpg', // Update with actual image path
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'FANDBA - IT Solutions & Cybersecurity',
       },
     ],
+    countryName: 'United States',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'FANDBA - Enterprise IT Solutions & Cybersecurity Services',
-    description: 'Leading provider of managed IT services, cybersecurity solutions, AI automation, and cloud services.',
+    description: 'Leading provider of managed IT services, cybersecurity solutions, AI automation, and cloud services. Trusted by businesses across the globe for digital transformation.',
     creator: '@fandba',
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -61,7 +63,15 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://fandba.us',
+    languages: {
+      'en-US': 'https://fandba.us/en-US',
+    },
   },
+  archives: [
+    'https://fandba.us/posts',
+    'https://fandba.us/services',
+    'https://fandba.us/products',
+  ],
 };
 
 export default function RootLayout({
@@ -70,22 +80,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'Organization' as const,
     name: 'FANDBA',
     alternateName: 'FANDBA Enterprise IT Solutions',
     url: 'https://fandba.us',
-    logo: 'https://fandba.us/logo.png', // Update with actual logo path
+    logo: '/logo.png', // Updated with actual logo path
     contactPoint: [
       {
-        '@type': 'ContactPoint',
+        '@type': 'ContactPoint' as const,
         telephone: '+1-307-533-5472',
         contactType: 'customer service',
         areaServed: 'US',
         availableLanguage: 'en',
       },
       {
-        '@type': 'ContactPoint',
+        '@type': 'ContactPoint' as const,
         telephone: '+1-307-533-5472',
         contactType: 'technical support',
         areaServed: 'US',
@@ -98,7 +107,7 @@ export default function RootLayout({
       'https://www.facebook.com/fandba'
     ],
     address: {
-      '@type': 'PostalAddress',
+      '@type': 'PostalAddress' as const,
       streetAddress: '30 N Gould ST Suite 32966',
       addressLocality: 'Sheridan',
       addressRegion: 'WY',
@@ -114,11 +123,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          id="structured-data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
+        <StructuredData type="Organization" data={organizationSchema} />
       </head>
       <body className={inter.className}>
         <Navbar />

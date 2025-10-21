@@ -5,6 +5,28 @@ import { ShoppingCart, Star, Filter } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'IT Solutions Shop - FANDBA | Hardware, Software & Services',
   description: 'Browse our comprehensive catalog of IT hardware, software licenses, security solutions, and professional services packages.',
+  openGraph: {
+    title: 'IT Solutions Shop - FANDBA | Hardware, Software & Services',
+    description: 'Browse our comprehensive catalog of IT hardware, software licenses, security solutions, and professional services packages.',
+    url: 'https://fandba.us/shop',
+    type: 'website',
+    images: [
+      {
+        url: '/og-shop.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FANDBA IT Solutions Shop - Hardware, Software & Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IT Solutions Shop - FANDBA | Hardware, Software & Services',
+    description: 'Browse our comprehensive catalog of IT hardware, software licenses, security solutions, and professional services packages.',
+  },
+  alternates: {
+    canonical: 'https://fandba.us/shop',
+  },
 };
 
 const products = [

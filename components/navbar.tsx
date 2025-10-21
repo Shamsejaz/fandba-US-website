@@ -37,8 +37,13 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Shield className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-900">FANDBA</span>
+              <img 
+                src="/logo.png" 
+                alt="FANDBA Logo" 
+                width={150} 
+                height={40}
+                className="h-auto object-contain"
+              />
             </Link>
           </div>
 

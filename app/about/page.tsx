@@ -4,6 +4,28 @@ import { Building2, Users, Award, Globe } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About FANDBA - Leading IT Solutions Provider',
   description: 'Learn about FANDBA\'s mission to deliver enterprise-grade IT solutions, cybersecurity services, and AI automation to businesses across the USA and globally.',
+  openGraph: {
+    title: 'About FANDBA - Leading IT Solutions Provider',
+    description: 'Learn about FANDBA\'s mission to deliver enterprise-grade IT solutions, cybersecurity services, and AI automation to businesses across the USA and globally.',
+    url: 'https://fandba.us/about',
+    type: 'website',
+    images: [
+      {
+        url: '/og-about.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About FANDBA - IT Solutions Company',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About FANDBA - Leading IT Solutions Provider',
+    description: 'Learn about FANDBA\'s mission to deliver enterprise-grade IT solutions, cybersecurity services, and AI automation.',
+  },
+  alternates: {
+    canonical: 'https://fandba.us/about',
+  },
 };
 
 export default function About() {

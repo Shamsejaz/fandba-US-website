@@ -44,25 +44,31 @@ export async function POST(request: NextRequest) {
 
     // Send email if SMTP configuration is available
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
-      const transporter = createTransporter();
-      
-      const mailOptions = {
-        from: process.env.SMTP_USER,
-        to: process.env.CONTACT_EMAIL || 'info@fandba.us', // Default to company email
-        subject: `New Contact Form Submission from ${validatedData.name}`,
-        text: emailContent,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${validatedData.name}</p>
-          <p><strong>Email:</strong> ${validatedData.email}</p>
-          <p><strong>Company:</strong> ${validatedData.company || 'N/A'}</p>
-          <p><strong>Phone:</strong> ${validatedData.phone || 'N/A'}</p>
-          <p><strong>Service of Interest:</strong> ${validatedData.service || 'N/A'}</p>
-          <p><strong>Message:</strong><br>${validatedData.message.replace(/\n/g, '<br>')}</p>
-        `,
-      };
+      try {
+        const transporter = createTransporter();
+        
+        const mailOptions = {
+          from: process.env.SMTP_USER,
+          to: process.env.CONTACT_EMAIL || 'info@fandba.us', // Default to company email
+          subject: `New Contact Form Submission from ${validatedData.name}`,
+          text: emailContent,
+          html: `
+            <h2>New Contact Form Submission</h2>
+            <p><strong>Name:</strong> ${validatedData.name}</p>
+            <p><strong>Email:</strong> ${validatedData.email}</p>
+            <p><strong>Company:</strong> ${validatedData.company || 'N/A'}</p>
+            <p><strong>Phone:</strong> ${validatedData.phone || 'N/A'}</p>
+            <p><strong>Service of Interest:</strong> ${validatedData.service || 'N/A'}</p>
+            <p><strong>Message:</strong><br>${validatedData.message.replace(/\n/g, '<br>')}</p>
+          `,
+        };
 
-      await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+      } catch (emailError) {
+        console.error('Failed to send email:', emailError);
+        // Continue with success response even if email fails - form data was still received
+      }
     } else {
       // If no SMTP configuration, log the data (for testing)
       console.log('Email not sent - SMTP not configured. Form data:', validatedData);

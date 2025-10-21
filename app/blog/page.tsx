@@ -5,6 +5,28 @@ import { Calendar, User, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Tech Blog - FANDBA | IT Insights, Cybersecurity & AI Trends',
   description: 'Stay updated with the latest IT trends, cybersecurity insights, AI developments, and technology best practices from FANDBA experts.',
+  openGraph: {
+    title: 'Tech Blog - FANDBA | IT Insights, Cybersecurity & AI Trends',
+    description: 'Stay updated with the latest IT trends, cybersecurity insights, AI developments, and technology best practices from FANDBA experts.',
+    url: 'https://fandba.us/blog',
+    type: 'website',
+    images: [
+      {
+        url: '/og-blog.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FANDBA Tech Blog - IT Insights & Trends',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tech Blog - FANDBA | IT Insights, Cybersecurity & AI Trends',
+    description: 'Stay updated with the latest IT trends, cybersecurity insights, AI developments, and technology best practices.',
+  },
+  alternates: {
+    canonical: 'https://fandba.us/blog',
+  },
 };
 
 const blogPosts = [
