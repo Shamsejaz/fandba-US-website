@@ -61,6 +61,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'NBHOZt9F-_aZiJYKjOks5otI7C7GghJpBQ25hRs54hA', // Keep existing verification
   },
+  icons: {
+    icon: '/favicon.ico',
+  },
   alternates: {
     canonical: 'https://fandba.us',
     languages: {
