@@ -58,9 +58,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info - US */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
+            <h3 className="text-lg font-semibold mb-4">US Contact Info</h3>
             <div className="space-y-3">
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-2 text-blue-400" />
@@ -75,6 +75,31 @@ export function Footer() {
                 <span className="text-gray-300">
                   30 N Gould ST Suite 32966<br />
                   Sheridan, WY 82801, USA
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Info - UK */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">UK Contact Info</h3>
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <Phone className="h-4 w-4 mr-2 text-blue-400" />
+                <span className="text-gray-300">+44 7868693235</span>
+              </div>
+              <div className="flex items-center">
+                <Mail className="h-4 w-4 mr-2 text-blue-400" />
+                <span className="text-gray-300">info@fandba.co.uk</span>
+              </div>
+              <div className="flex items-center">
+                <Mail className="h-4 w-4 mr-2 text-blue-400" />
+                <span className="text-gray-300">sales@fandba.co.uk</span>
+              </div>
+              <div className="flex items-start">
+                <MapPin className="h-4 w-4 mr-2 text-blue-400 mt-1" />
+                <span className="text-gray-300">
+                  London, United Kingdom
                 </span>
               </div>
             </div>

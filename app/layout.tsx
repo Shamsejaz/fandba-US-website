@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         alt: 'FANDBA - IT Solutions & Cybersecurity',
       },
     ],
-    countryName: 'United States',
+    countryName: ['United States', 'United Kingdom'],
   },
   twitter: {
     card: 'summary_large_image',
@@ -65,6 +65,7 @@ export const metadata: Metadata = {
     canonical: 'https://fandba.us',
     languages: {
       'en-US': 'https://fandba.us/en-US',
+      'en-GB': 'https://fandba.co.uk/en-GB',
     },
   },
   archives: [
@@ -95,9 +96,23 @@ export default function RootLayout({
       },
       {
         '@type': 'ContactPoint' as const,
+        telephone: '+44 7868693235',
+        contactType: 'customer service',
+        areaServed: 'UK',
+        availableLanguage: 'en',
+      },
+      {
+        '@type': 'ContactPoint' as const,
         telephone: '+1-307-533-5472',
         contactType: 'technical support',
         areaServed: 'US',
+        availableLanguage: 'en',
+      },
+      {
+        '@type': 'ContactPoint' as const,
+        telephone: '+44 7868693235',
+        contactType: 'technical support',
+        areaServed: 'UK',
         availableLanguage: 'en',
       }
     ],
@@ -106,17 +121,25 @@ export default function RootLayout({
       'https://twitter.com/fandba',
       'https://www.facebook.com/fandba'
     ],
-    address: {
-      '@type': 'PostalAddress' as const,
-      streetAddress: '30 N Gould ST Suite 32966',
-      addressLocality: 'Sheridan',
-      addressRegion: 'WY',
-      postalCode: '82801',
-      addressCountry: 'US'
-    },
+    address: [
+      {
+        '@type': 'PostalAddress' as const,
+        streetAddress: '30 N Gould ST Suite 32966',
+        addressLocality: 'Sheridan',
+        addressRegion: 'WY',
+        postalCode: '82801',
+        addressCountry: 'US'
+      },
+      {
+        '@type': 'PostalAddress' as const,
+        addressLocality: 'London',
+        addressCountry: 'UK'
+      }
+    ],
     foundingDate: '2020',
     identifier: 'FANDBA',
     email: 'info@fandba.us',
+    email2: 'info@fandba.co.uk',
     vatID: 'TBD', // Add actual VAT ID if applicable
   };
 

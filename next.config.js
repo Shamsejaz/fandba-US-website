@@ -6,7 +6,7 @@ const nextConfig = {
   images: { 
     unoptimized: true,
     // Configure allowed image domains for security
-    domains: ['localhost', 'fandba.us', 'www.fandba.us'],
+    domains: ['localhost', 'fandba.us', 'www.fandba.us', 'fandba.co.uk', 'www.fandba.co.uk'],
   },
   // Security headers through Next.js config
   async headers() {

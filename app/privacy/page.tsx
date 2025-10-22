@@ -85,14 +85,25 @@ export default function PrivacyPolicy() {
               If you have questions about this privacy policy, please contact us at:
             </p>
             
-            <div className="bg-gray-50 p-6 rounded-lg mt-4">
-              <p className="text-gray-700">
-                <strong>FANDBA</strong><br />
-                30 N Gould ST Suite 32966<br />
-                Sheridan, WY 82801, USA<br /><br />
-                Phone: +1 307-533-5472<br />
-                Email: info@fandba.us
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <p className="text-gray-700">
+                  <strong>US Operations</strong><br />
+                  30 N Gould ST Suite 32966<br />
+                  Sheridan, WY 82801, USA<br /><br />
+                  Phone: +1 307-533-5472<br />
+                  Email: info@fandba.us
+                </p>
+              </div>
+              
+              <div className="bg-gray-50 p-6 rounded-lg">
+                <p className="text-gray-700">
+                  <strong>UK Operations</strong><br />
+                  London, United Kingdom<br /><br />
+                  Phone: +44 7868693235<br />
+                  Email: info@fandba.co.uk
+                </p>
+              </div>
             </div>
           </div>
         </div>

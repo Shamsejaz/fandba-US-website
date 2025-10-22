@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
         
         const mailOptions = {
           from: process.env.SMTP_USER,
-          to: process.env.CONTACT_EMAIL || 'info@fandba.us', // Default to company email
+          to: process.env.CONTACT_EMAIL || 'info@fandba.us,info@fandba.co.uk', // Default to both US and UK emails
           subject: `New Contact Form Submission from ${validatedData.name}`,
           text: emailContent,
           html: `
