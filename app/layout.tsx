@@ -6,6 +6,8 @@ import { Footer } from '@/components/footer';
 import StructuredData from '@/components/StructuredData';
 import CookieConsent from '@/components/CookieConsent';
 
+const inter = Inter({ subsets: ['latin'] });
+
 export const metadata: Metadata = {
   title: {
     default: 'FANDBA - Enterprise IT Solutions & Cybersecurity Services',
