@@ -57,7 +57,7 @@ docker run -p 3000:3000 fandba-website
 Run with custom environment variables:
 
 ```bash
-docker run -p 3000:3000 -e NEXT_PUBLIC_GA_ID=G-7F1JW29SW7 fandba-website
+docker run -p 3000:3000 -e NEXT_PUBLIC_GA_ID=G-C2WTTH82ZQ fandba-website
 ```
 
 Run with detached mode and name:
@@ -91,7 +91,7 @@ The application uses the following environment variables:
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
 | NODE_ENV | Node.js environment | production | No |
-| NEXT_PUBLIC_GA_ID | Google Analytics tracking ID | G-7F1JW29SW7 | No |
+| NEXT_PUBLIC_GA_ID | Google Analytics tracking ID | G-C2WTTH82ZQ | No |
 
 ### Volumes for Persistent Data
 

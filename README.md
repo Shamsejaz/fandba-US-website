@@ -40,7 +40,7 @@ docker build -t fandba-website .
 
 Run the container:
 ```bash
-docker run -p 3000:3000 -e NEXT_PUBLIC_GA_ID=G-7F1JW29SW7 fandba-website
+docker run -p 3000:3000 -e NEXT_PUBLIC_GA_ID=G-C2WTTH82ZQ fandba-website
 ```
 
 ### Build and Run with Docker Compose
@@ -60,7 +60,7 @@ docker-compose down
 The following environment variables can be set:
 
 - `NODE_ENV`: Set to 'production' for production builds (default: 'production' in Docker)
-- `NEXT_PUBLIC_GA_ID`: Google Analytics tracking ID (default: G-7F1JW29SW7)
+- `NEXT_PUBLIC_GA_ID`: Google Analytics tracking ID (default: G-C2WTTH82ZQ)
 
 ## Production Deployment
 
