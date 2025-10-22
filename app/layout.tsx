@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://fandba.us',
     title: 'FANDBA - Enterprise IT Solutions & Cybersecurity Services',
-    description: 'Leading provider of managed IT services, cybersecurity solutions, AI automation, and cloud services. Trusted by businesses across the globe for digital transformation.',
+    description: 'Leading provider of managed IT services, cybersecurity solutions, AI automation, and cloud services. Trusted by businesses across the USA and UK for digital transformation.',
     siteName: 'FANDBA',
     images: [
       {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         alt: 'FANDBA - IT Solutions & Cybersecurity',
       },
     ],
-    countryName: ['United States', 'United Kingdom'],
+    countryName: 'United States',
   },
   twitter: {
     card: 'summary_large_image',
@@ -121,25 +121,17 @@ export default function RootLayout({
       'https://twitter.com/fandba',
       'https://www.facebook.com/fandba'
     ],
-    address: [
-      {
-        '@type': 'PostalAddress' as const,
-        streetAddress: '30 N Gould ST Suite 32966',
-        addressLocality: 'Sheridan',
-        addressRegion: 'WY',
-        postalCode: '82801',
-        addressCountry: 'US'
-      },
-      {
-        '@type': 'PostalAddress' as const,
-        addressLocality: 'London',
-        addressCountry: 'UK'
-      }
-    ],
+    address: {
+      '@type': 'PostalAddress' as const,
+      streetAddress: '30 N Gould ST Suite 32966',
+      addressLocality: 'Sheridan',
+      addressRegion: 'WY',
+      postalCode: '82801',
+      addressCountry: 'US'
+    },
     foundingDate: '2020',
     identifier: 'FANDBA',
     email: 'info@fandba.us',
-    email2: 'info@fandba.co.uk',
     vatID: 'TBD', // Add actual VAT ID if applicable
   };
 
