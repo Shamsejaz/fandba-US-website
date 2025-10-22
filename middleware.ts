@@ -5,9 +5,13 @@ export function middleware(request: NextRequest) {
   // Check if the host contains 'www' and redirect to non-www version
   const host = request.headers.get('host') || '';
   if (host.startsWith('www.')) {
-    const newUrl = new URL(request.url);
-    newUrl.hostname = host.replace('www.', '');
-    return NextResponse.redirect(newUrl.toString());
+    const url = request.nextUrl.clone();
+    url.hostname = host.replace('www.', '');
+    // Remove port if it's the default port to avoid issues in production
+    if (url.port === '3000' || url.port === '80' || url.port === '443') {
+      url.port = '';
+    }
+    return NextResponse.redirect(url);
   }
 
   const response = NextResponse.next();
