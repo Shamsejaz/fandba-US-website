@@ -2,6 +2,14 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  // Check if the host contains 'www' and redirect to non-www version
+  const host = request.headers.get('host') || '';
+  if (host.startsWith('www.')) {
+    const newUrl = new URL(request.url);
+    newUrl.hostname = host.replace('www.', '');
+    return NextResponse.redirect(newUrl.toString());
+  }
+
   const response = NextResponse.next();
 
   // Security headers
