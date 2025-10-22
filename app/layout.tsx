@@ -4,8 +4,7 @@ import { Inter } from 'next/font/google';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 import StructuredData from '@/components/StructuredData';
-
-const inter = Inter({ subsets: ['latin'] });
+import CookieConsent from '@/components/CookieConsent';
 
 export const metadata: Metadata = {
   title: {
@@ -147,6 +146,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
