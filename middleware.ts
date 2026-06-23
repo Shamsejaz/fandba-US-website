@@ -2,11 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  // Check if the host contains 'www' and redirect to non-www version
-  const host = request.headers.get('host') || '';
-  if (host.startsWith('www.')) {
-    const url = request.nextUrl.clone();
-    url.hostname = host.replace('www.', '');
+
     // Remove port if it's the default port to avoid issues in production
     if (url.port === '3000' || url.port === '80' || url.port === '443') {
       url.port = '';
